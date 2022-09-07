@@ -1,0 +1,44 @@
+{
+    "status": 0,
+    "msg": "SUCCESS",
+    "menuData": [
+      {
+        "title": "Cover",
+        "value": "cover",
+        "src": "./model/glb/sofa/sofa.glb",
+        "color": "#dddddd"
+        
+      },
+	  {
+        "title": "Cover",
+        "value": "cover",
+        "src": "./model/glb/sofa/sofa1.glb",
+        "color": "#dddddd"
+        
+      },
+	  {
+        "title": "Cover",
+        "value": "cover",
+        "src": "./model/glb/sofa/sofa2.glb",
+        "color": "#dddddd"
+        
+      },
+	  {
+        "title": "Cover",
+        "value": "cover",
+        "src": "./model/glb/sofa/sofa3.glb",
+        "color": "#dddddd"
+        
+      },
+	  {
+        "title": "Cover",
+        "value": "cover",
+        "src": "./model/glb/sofa/sofa4.glb",
+        "color": "#dddddd"
+        
+      }
+	  
+      
+    ]
+  }
+  

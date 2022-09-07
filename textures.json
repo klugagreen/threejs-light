@@ -1,0 +1,25 @@
+{
+    "status": 0,
+    "msg": "SUCCESS",
+    "menuData": [
+      {
+        "title": "name of texture",
+        "value": "t1",
+        "src": "./textures/tex1.jpg"        
+      },{
+        "title": "name of texture",
+        "value": "t2",
+        "src": "./textures/tex2.jpg"        
+      },{
+        "title": "name of texture",
+        "value": "t3",
+        "src": "./textures/tex3.jpg"        
+      },{
+        "title": "name of texture",
+        "value": "t4",
+        "src": "./textures/tex4.jpg"
+      }
+      
+    ]
+  }
+  

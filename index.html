@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>STL Color Viewer</title>
+  <script src='https://unpkg.com/three@0.127.0/build/three.js'></script>
+  <script type="text/javascript" src="asset/STLLoader.js"></script>
+  
+  <!-- This brings in the ability to load custom 3D objects in the .gltf file format. Blender allows the ability to export to this format out the box -->
+  <script src='https://cdn.jsdelivr.net/gh/mrdoob/three.js@r92/examples/js/loaders/GLTFLoader.js'></script>
+
+  <!-- This is a simple to use extension for three.js that activates all the rotating, dragging and zooming controls we need for both mouse and touch, there isn't a clear CDN for this that I can find -->
+  <script src='https://threejs.org/examples/js/controls/OrbitControls.js'></script>
+
+  <script type="text/javascript" src="asset/weui/lib/jquery-2.1.4.js"></script>
+  <script type="text/javascript" src="asset/weui/js/jquery-weui.min.js"></script>
+  <link rel="stylesheet" href="asset/weui/lib/weui.min.css">
+  <link rel="stylesheet" href="asset/weui/css/jquery-weui.min.css">
+  <link rel="stylesheet" href="./bootstrap.min.css" />
+  <link rel="stylesheet" href="./asset/fonts/style.css" />
+
+  <!-- <script src="stl_viewer.min.js"></script>    -->
+  <script src= "https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
+  <style>
+    #webglDisplay {
+      width: 75vw;
+      height: 97vh;
+      /*width: 100% !important;
+      height: 100% !important;
+      */
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="col-md-12">
+    <div class="row">
+      <div class="col-md-8 pr_0">
+        <div class="board_modelView">
+
+          <div id="webglDisplay">
+            <div id="stl_cont"></div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4 pl_0">
+        <div class="board_stl">
+          <div id="stl_models_view_image">
+              <div id="stl_models_view_board">
+                  <div id="stl_models_panel">
+                  </div>
+              </div>
+          </div>
+    
+          <div id="preview-board" class="board_col">
+              <i class='fas fa-map-marker' id="col-sel-icon"></i>
+              <div id="col-panel"></div>
+              <div class="preview_section">
+                <div id="col-preview"></div>
+                <div class="templates">
+                  <h3>TEXTURES</h3>
+                  <ul>
+                    <li>
+                      <button type="button" onclick="tex1()">
+                        <img src="./textures/tex1.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex2()">
+                       <img src="./textures/tex2.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex3()">
+                        <img src="./textures/tex3.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex4()">
+                        <img src="./textures/tex4.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex5()">
+                        <img src="./textures/tex5.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex6()">
+                         <img src="./textures/tex6.jpg" alt="" />
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex7()">
+                      <img src="./textures/tex7.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex8()">
+                        <img src="./textures/tex8.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex9()">
+                         <img src="./textures/tex9.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex10()">
+                         <img src="./textures/tex10.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex11()">
+                         <img src="./textures/tex11.jpg" alt="" />
+                      </button>
+                    </li>
+                    <li>
+                      <button type="button" onclick="tex12()">
+                         <img src="./textures/tex12.jpg" alt="" />
+                      </button>
+                    </li>
+                  </ul>
+                  <h4>REGLAGES</h4>
+                  <div id="board_function">
+                    <div id="f1_texture">
+                      <div class="texture_text">Texture</div>
+                      <div class="texture_controller_bar">
+                        <div id="texture_controller_scroll" style="margin-left: 0px;"></div>
+                      </div>
+                    </div>
+                    <div id="f1_zoom">
+                        <div class="zoom_text">Zoom</div>
+                        <div class="zoom_controller_bar">
+                            <div id="zoom_controller_scroll"></div>
+                        </div>
+                    </div>
+                    <!-- <div id="f1_light">
+                      <div class="light_text">Light</div>
+                      <div class="light_controller_bar">
+                        <div id="light_controller_scroll" style="margin-left: 0px;"></div>
+                      </div>
+                    </div> -->
+                    <div id="f1_light">
+                        <div class="light_text">Light</div>
+                        <div class="light_controller_bar">
+                            <div id="light_controller_scroll"></div>
+                        </div>
+                    </div>
+                    <div id="f2_rotation">
+                        <div class="rotation_text">Rotation</div>
+                        <div class="rotation_controller_board">
+                            <div id="rotation_controller"></div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                  <button id="removeTexture" onclick="removeTexture()" class="removeTexture">Annuler la texture</button>
+                </div>
+                  
+                </div>
+                <div id="btn_save" onclick="saveImage()"></div>
+              </div>
+          </div>
+          <!-- <div id="textures-container">        
+            <button id="removeTexture" onclick="removeTexture()">remove textures</button>
+            <button id="tex1" onclick="tex1()">texture 1</button>
+           <button id="tex2" onclick="tex2()">texture 2</button>
+            <button id="tex3" onclick="tex3()">texture 3</button>
+        <button id="tex4" onclick="tex3()">texture 4</button> 
+          </div> -->
+          
+      </div>
+      </div>
+    </div>
+    
+  </div>
+  
+
+ 
+
+
+  <script type="text/javascript" src="./script.js"></script>
+  <link rel="stylesheet" href="style.css">
+
+  <input type="text" name="" id="temp_x" style="display: none;">
+  <input type="text" name="" id="temp_y" style="display: none;">
+  <input type="text" name="" id="temp_z" style="display: none;">
+</body>
+
+</html>
