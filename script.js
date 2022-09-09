@@ -282,42 +282,14 @@ $('body').mousemove(function (event) {
         }
         $('#light_controller_scroll').css("margin-left", tempX);
 
-        var scaleValue = 1 + tempX / 20;
+        var scaleValue = tempX / maxtemp;
         // camera.zoom = scaleValue;
-        changeLightIntensity(scaleValue);
+        dirLight.intensity = scaleValue;
         camera.updateProjectionMatrix();
     }
 })
 $('body').mouseup(function () { l_clickflag = false; })
 $('#light_controller_scroll').mouseup(function () { l_clickflag = false; })
-
-const changeLightIntensity = (reCount) => {
-          
-        $.getJSON(config, function (data) {
-        var intensity = reCount;
-        let menuData = [];
-        menuData = data.menuData;
-        // modelLoader(scene, menuData[setId].value, menuData[setId].src, arrTostr(selectModelColor),reCount);
-        // DirectionalLight(0x222222, reCount);
-        // var dirLight = new THREE.DirectionalLight( 0x222222, intensity );
-        // dirLight.position.set( 8, 12, 8 );
-        // dirLight.castShadow = true;
-        // dirLight.shadow.mapSize = new THREE.Vector2(1024, 1024);
-        // // Add directional Light to scene 
-        // scene.add( dirLight );
-
-        var hemiLight = new THREE.HemisphereLight( 0x222222, 0x333333, intensity );
-        hemiLight.position.set( 0, 50, 0 );
-
-        // // Add hemisphere light to scene  
-
-        scene.add( hemiLight );
-
-        // const light = new THREE.DirectionalLight(0x222222, reCount);
-        // scene.add(light);   
-        })   
-             
-}
 
 // sample color list
 const colors = [
