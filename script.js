@@ -17,7 +17,8 @@ renderer.shadowMap.enabled = true;
 renderer.setPixelRatio(window.devicePixelRatio); 
 
 // Add lights
-var ambientLight = new THREE.AmbientLight( 0x222222 );
+var ambientLight = new THREE.AmbientLight( 0xffffff );
+scene.add( ambientLight );
 var hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.61 );
     hemiLight.position.set( 0, 50, 0 );
 
@@ -284,7 +285,7 @@ $('body').mousemove(function (event) {
 
         var scaleValue = tempX / maxtemp;
         // camera.zoom = scaleValue;
-        dirLight.intensity = scaleValue;
+        ambientLight.intensity = scaleValue;
         camera.updateProjectionMatrix();
     }
 })
